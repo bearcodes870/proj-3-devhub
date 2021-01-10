@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 from django.http import HttpResponse
 
-class User:  # Note that parens are optional if not inheriting from another class
+class User: 
   def __init__(self, name):
     self.name = name
 
@@ -13,7 +13,7 @@ users = [
 ]
 
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'home.html', { 'users': users })
 
 def about(request):
     return render(request, 'about.html')
