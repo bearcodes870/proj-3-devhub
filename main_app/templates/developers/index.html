@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Developers List</h1>
+
+{% for developer in developers %}
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">{{ developer.name }}</span>
+      <p>Projects: {{ developer.description }}</p>
+      <p>Description: {{ developer.projects }}</p>
+    </div>
+  </div>
+{% endfor %}
+
+{% endblock %}
