@@ -6,12 +6,14 @@
     <ul class="collection with-header">
         <li class="collection-header"><h4>DevHub Users</h4></li>
             {% for developer in developers %}
+                <a href="/developers/{{ developer.id }}">
                 <li class="collection-item avatar">
                 <i class="material-icons circle">face</i>
                 <span class="title">{{ developer.name }}</span>
                 <p>{{ developer.description }}<br>
                 {{ developer.projects }}</p>
-                <a href="#!" class="secondary-content"><i class="material-icons">navigate_next</i></a>
+                <i class="material-icons">navigate_next</i>
+                </a>
             {% endfor %}
         </li>
     </ul>

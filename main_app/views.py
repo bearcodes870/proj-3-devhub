@@ -28,3 +28,7 @@ def developers_index(request):
     developers = Developer.objects.all()
     return render(request, 'developers/index.html', { 'developers': developers })
 
+def developers_detail(request, developer_id):
+    developers = Developer.objects.get(id=developer_id)
+    return render(request, 'developers/detail.html', { 'developers' : developers })
+
