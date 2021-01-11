@@ -7,8 +7,18 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Developer
 
+class User: 
+  def __init__(self, name):
+    self.name = name
+
+users = [
+  User('Lolo'),
+  User('Sachi'),
+  User('Raven')
+]
+
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'home.html', { 'users': users })
 
 def about(request):
     return render(request, 'about.html')
@@ -16,3 +26,4 @@ def about(request):
 def developers_index(request):
     developers = Developer.objects.all()
     return render(request, 'developers/index.html', { 'developers': developers })
+
