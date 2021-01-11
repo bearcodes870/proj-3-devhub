@@ -18,7 +18,8 @@ users = [
 ]
 
 def home(request):
-    return render(request, 'home.html', { 'users': users })
+    developers = Developer.objects.all()
+    return render(request, 'home.html', { 'developers': developers })
 
 def about(request):
     return render(request, 'about.html')
