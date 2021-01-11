@@ -1,8 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import Developer
 
-from django.http import HttpResponse
-
-class User:  # Note that parens are optional if not inheriting from another class
+class User: 
   def __init__(self, name):
     self.name = name
 
@@ -13,10 +18,12 @@ users = [
 ]
 
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'home.html', { 'users': users })
 
 def about(request):
     return render(request, 'about.html')
 
-def users_index(request):
-    return render(request, 'users/index.html', { 'users': users })
+def developers_index(request):
+    developers = Developer.objects.all()
+    return render(request, 'developers/index.html', { 'developers': developers })
+
