@@ -6,9 +6,11 @@
 {% for developer in developers %}
   <div class="card">
     <div class="card-content">
+      <a href="{% url 'detail' developer.id %}">
       <span class="card-title">{{ developer.name }}</span>
       <p>Projects: {{ developer.description }}</p>
       <p>Description: {{ developer.projects }}</p>
+      </a>
     </div>
   </div>
 {% endfor %}
