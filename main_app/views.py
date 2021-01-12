@@ -17,6 +17,10 @@ users = [
   User('Raven')
 ]
 
+class DeveloperCreate(CreateView):
+    model = Developer
+    fields = '__all__'
+
 def home(request):
     developers = Developer.objects.all()
     return render(request, 'home.html', { 'developers': developers })
