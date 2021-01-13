@@ -7,6 +7,7 @@ class Developer(models.Model):
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
     projects = models.CharField(max_length=200)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
