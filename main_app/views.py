@@ -5,7 +5,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Developer
+from .models import Developer, Project
 
 class DeveloperCreate(CreateView):
     model = Developer
@@ -36,6 +36,11 @@ def developers_index(request):
 def developers_detail(request, developer_id):
     developer = Developer.objects.get(id=developer_id)
     return render(request, 'developers/detail.html', { 'developer' : developer })
+
+@login_required
+def projects_index(request):
+    projects = Project.objects.all()
+    return render(request, 'projects/index.html', { 'projects': projects})
 
 
 def signup(request):
