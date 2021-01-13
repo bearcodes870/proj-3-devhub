@@ -10,8 +10,12 @@
                 <li class="collection-item avatar">
                 <i class="material-icons circle">face</i>
                 <span class="title">{{ developer.name }}</span>
-                <p>{{ developer.description }}<br>
-                Currently working on: {{ developer.projects }}</p>
+                <p>{{ developer.description }}</p>
+                   {% if developer.projects.count %}
+                    {% for project in developer.projects.all %}
+                        <p>Currently working on: {{ project.project_name }}</p>
+                    {% endfor %}
+                   {% endif %}
                 <i class="secondary-content material-icons">navigate_next</i>
                 </a>
             {% endfor %}

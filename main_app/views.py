@@ -9,7 +9,7 @@ from .models import Developer, Project
 
 class DeveloperCreate(CreateView):
     model = Developer
-    fields = '__all__'
+    fields = ['name', 'description', 'projects']
 
 class DeveloperUpdate(UpdateView):
   model = Developer
