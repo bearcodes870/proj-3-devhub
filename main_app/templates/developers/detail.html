@@ -1,17 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>{{ developers.name }}'s Profile</h1>
+<h1>{{ developer.name }}'s Profile</h1>
 
 <div class="card">
   <div class="card-content">
-    <span class="card-title">A blurb about {{ developers.name }} </span>
+    <span class="card-title">A blurb about {{ developer.name }} </span>
     <br>
-    <p>{{ developers.description }}</p>
+    <p>{{ developer.description }}</p>
     <br>
-    <span class="card-title">Here's what {{ developers.name }} has been working on</span>
+    <span class="card-title">Here's what {{ developer.name }} has been working on</span>
     <br>
-    <p>{{ developers.projects }}</p>
+    <p>{{ developer.projects }}</p>
+  </div>
+  <div class="card-action">
+    <a href="{% url 'developers_update' developer.id %}">Edit</a>
+    <a href="{% url 'developers_delete' developer.id %}">Delete</a>
   </div>
 </div>
 
