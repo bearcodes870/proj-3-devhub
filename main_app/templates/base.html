@@ -19,9 +19,9 @@
           <li><a href="/" class="left brand-logo">&nbsp;&nbsp;DevHub</a></li>
         </ul>
         <ul class="right">
-          <li><a href="/about">About</a></li>
-          <li><a href="/">Add</a></li>
-          <li><a href="/developers">Developers</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'developers_create' %}">Add</a></li>
+          <li><a href="{% url 'index' %}">Developers</a></li>
           <li><a href="/">Projects</a></li>
           <li><a href="/">Profile</a></li>
           <li><a href="/accounts/login">Login</a></li>

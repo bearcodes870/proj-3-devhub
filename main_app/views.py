@@ -7,6 +7,19 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Developer
 
+class DeveloperCreate(CreateView):
+    model = Developer
+    fields = '__all__'
+
+class DeveloperUpdate(UpdateView):
+  model = Developer
+  # Let's disallow the renaming of a cat by excluding the name field!
+  fields = ['description']
+
+class DeveloperDelete(DeleteView):
+  model = Developer
+  success_url = '/developers/'
+  
 def home(request):
     developers = Developer.objects.all()
     return render(request, 'home.html', { 'developers': developers })
@@ -21,8 +34,9 @@ def developers_index(request):
 
 @login_required
 def developers_detail(request, developer_id):
-    developers = Developer.objects.get(id=developer_id)
-    return render(request, 'developers/detail.html', { 'developers' : developers })
+    developer = Developer.objects.get(id=developer_id)
+    return render(request, 'developers/detail.html', { 'developer' : developer })
+
 
 def signup(request):
   error_message = ''
