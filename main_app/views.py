@@ -7,16 +7,19 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Developer, Project
 
-class DeveloperCreate(CreateView):
+class DeveloperCreate(LoginRequiredMixin, CreateView):
     model = Developer
-    fields = ['name', 'description', 'projects']
+    fields = ['name', 'description']
 
-class DeveloperUpdate(UpdateView):
+    def form_valid(self, form):
+      form.instance.user = self.request.user
+      return super().form_valid(form)
+
+class DeveloperUpdate(LoginRequiredMixin, UpdateView):
   model = Developer
-  # Let's disallow the renaming of a cat by excluding the name field!
   fields = ['description']
 
-class DeveloperDelete(DeleteView):
+class DeveloperDelete(LoginRequiredMixin, DeleteView):
   model = Developer
   success_url = '/developers/'
   
@@ -50,7 +53,7 @@ def signup(request):
     if form.is_valid():
       user = form.save()
       login(request, user)
-      return redirect('/')
+      return redirect('/developers/create')
     else:
       error_message = 'Invalid sign up - try again'
   
