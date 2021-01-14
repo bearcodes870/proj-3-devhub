@@ -12,6 +12,9 @@
     <span class="card-title">Project Overview: {{ project.project_overview }}</span>
     <br>
   <div class="card-action">
+        <a href="{% url 'projects_update' project.id %}">Edit</a>
+        <a href="{% url 'projects_delete' project.id %}">Delete</a>
+  </div>
   </div>
   </div>
 </div>
