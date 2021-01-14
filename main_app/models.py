@@ -22,6 +22,10 @@ class Project(models.Model):
 
     def __str__(self):
         return self.project_name
+    
+    def get_absolute_url(self):
+        return reverse('projects_detail', kwargs={'pk': self.id})
+
 
 class Developer(models.Model):
     name = models.CharField(max_length=200)

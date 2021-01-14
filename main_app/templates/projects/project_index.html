@@ -6,7 +6,9 @@
 {% for project in projects %}
   <div class="card">
     <div class="card-content">
+      <a href="{% url 'projects_detail' project.id %}">
       <span class="card-title">{{ project.project_name }}</span>
+      </a>
     </div>
   </div>
 {% endfor %}

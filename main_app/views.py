@@ -43,7 +43,10 @@ def developers_detail(request, developer_id):
 @login_required
 def projects_index(request):
     projects = Project.objects.all()
-    return render(request, 'projects/index.html', { 'projects': projects})
+    return render(request, 'projects/project_index.html', { 'projects': projects})
+
+class ProjectDetail(LoginRequiredMixin, DetailView):
+  model = Project
 
 
 def signup(request):
