@@ -49,6 +49,15 @@ class ProjectDetail(LoginRequiredMixin, DetailView):
   model = Project
 
 
+class ProjectUpdate(LoginRequiredMixin, UpdateView):
+  model = Project
+  fields = ['name', 'overview']
+
+class ProjectDelete(LoginRequiredMixin, DeleteView):
+  model = Project
+  success_url = '/projects/'
+
+
 def signup(request):
   error_message = ''
   if request.method == 'POST':
