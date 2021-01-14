@@ -27,9 +27,6 @@ class Project(models.Model):
         return reverse('projects_detail', kwargs={'pk': self.id})
 
 
-    def get_absolute_url(self):
-        return reverse("projects_index")
-
 class Developer(models.Model):
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
