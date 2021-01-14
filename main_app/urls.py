@@ -12,6 +12,7 @@ urlpatterns = [
     path('developers/<int:developer_id>/assoc_project/<int:project_id>/', views.assoc_project, name='assoc_project'),
     path('projects/', views.projects_index, name='projects_index'),
     path('projects/<int:pk>/', views.ProjectDetail.as_view(), name='projects_detail'),
+    path('projects/create/', views.ProjectCreate.as_view(), name='project_add'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup/', views.signup, name='signup'),
 ]
