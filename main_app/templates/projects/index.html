@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 
+
 <h1>Project List</h1>
+
+<a href="{% url 'project_add' %}" class="waves-effect waves-light btn">Add A Project</a>
 
 {% for project in projects %}
   <div class="card">
