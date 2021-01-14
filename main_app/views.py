@@ -6,6 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Developer, Project
+from .forms import ProjectForm
 
 class DeveloperCreate(LoginRequiredMixin, CreateView):
     model = Developer
@@ -22,6 +23,14 @@ class DeveloperUpdate(LoginRequiredMixin, UpdateView):
 class DeveloperDelete(LoginRequiredMixin, DeleteView):
   model = Developer
   success_url = '/developers/'
+
+class ProjectCreate(LoginRequiredMixin, CreateView):
+    model = Project
+    fields = ['project_name', 'project_overview', 'languages']
+    
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
   
 def home(request):
     developers = Developer.objects.all()
@@ -43,7 +52,11 @@ def developers_detail(request, developer_id):
 @login_required
 def projects_index(request):
     projects = Project.objects.all()
-    return render(request, 'projects/index.html', { 'projects': projects})
+    return render(request, 'projects/index.html', { 'projects': projects })
+
+def projects_detail(request, project_id):
+    project = Project.objects.get(id=project_id)
+    return render(request, 'home.html', { 'project': project })
 
 
 def signup(request):

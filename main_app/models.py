@@ -23,6 +23,9 @@ class Project(models.Model):
     def __str__(self):
         return self.project_name
 
+    def get_absolute_url(self):
+        return reverse("projects_index")
+
 class Developer(models.Model):
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
