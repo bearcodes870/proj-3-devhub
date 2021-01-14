@@ -52,11 +52,14 @@ def developers_detail(request, developer_id):
 @login_required
 def projects_index(request):
     projects = Project.objects.all()
-    return render(request, 'projects/index.html', { 'projects': projects })
+    return render(request, 'projects/project_index.html', { 'projects': projects })
 
 def projects_detail(request, project_id):
     project = Project.objects.get(id=project_id)
     return render(request, 'home.html', { 'project': project })
+
+class ProjectDetail(LoginRequiredMixin, DetailView):
+  model = Project
 
 
 class ProjectUpdate(LoginRequiredMixin, UpdateView):
