@@ -67,3 +67,4 @@ def signup(request):
 def assoc_project(request, developer_id, project_id):
   Developer.objects.get(id=developer_id).projects.add(project_id)
   return redirect('detail', developer_id=developer_id)
+
