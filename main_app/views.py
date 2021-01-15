@@ -97,7 +97,7 @@ def update_profile(request):
         if user_form.is_valid() and developer_form.is_valid():
             user_form.save()
             developer_form.save()
-            return redirect('/')
+            return redirect('/profile')
         else:
             error_message = 'invalid'
     else:
