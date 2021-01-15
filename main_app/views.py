@@ -103,7 +103,7 @@ def update_profile(request):
     else:
         user_form = UserForm(instance=request.user)
         developer_form = DeveloperForm(instance=request.user.developer)
-    return render(request, 'profiles/user_profile.html', {
+    return render(request, 'main_app/profile_form.html', {
         'user_form': user_form,
         'developer_form': developer_form
     })
