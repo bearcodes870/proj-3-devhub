@@ -54,9 +54,13 @@ def projects_index(request):
     projects = Project.objects.all()
     return render(request, 'projects/project_index.html', { 'projects': projects })
 
+@login_required
 def projects_detail(request, project_id):
     project = Project.objects.get(id=project_id)
     return render(request, 'home.html', { 'project': project })
+
+def user_profile(request):
+    return render(request, 'profiles/user_profile.html')
 
 class ProjectDetail(LoginRequiredMixin, DetailView):
   model = Project
