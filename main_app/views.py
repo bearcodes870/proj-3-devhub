@@ -93,7 +93,7 @@ def signup(request):
 def update_profile(request):
     if request.method == 'POST':
         user_form = UserForm(request.POST, instance=request.user)
-        developer_form = DeveloperForm(request.POST, instance=request.user.profile)
+        developer_form = DeveloperForm(request.POST, instance=request.user.developer)
         if user_form.is_valid() and developer_form.is_valid():
             user_form.save()
             developer_form.save()
