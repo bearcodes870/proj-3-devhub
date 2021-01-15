@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Developer, Project
-from .forms import ProjectForm
+from .forms import ProjectForm, UserForm, DeveloperForm
 
 class DeveloperCreate(LoginRequiredMixin, CreateView):
     model = Developer
@@ -54,22 +54,26 @@ def projects_index(request):
     projects = Project.objects.all()
     return render(request, 'projects/project_index.html', { 'projects': projects })
 
+@login_required
 def projects_detail(request, project_id):
     project = Project.objects.get(id=project_id)
     return render(request, 'home.html', { 'project': project })
 
+@login_required
+def user_profile(request):
+    return render(request, 'profiles/user_profile.html')
+
 class ProjectDetail(LoginRequiredMixin, DetailView):
-  model = Project
+    model = Project
 
 
 class ProjectUpdate(LoginRequiredMixin, UpdateView):
-  model = Project
-  fields = ['name', 'overview']
+    model = Project
+    fields = ['name', 'overview']
 
 class ProjectDelete(LoginRequiredMixin, DeleteView):
-  model = Project
-  success_url = '/projects/'
-
+    model = Project
+    success_url = '/projects/'
 
 def signup(request):
   error_message = ''
@@ -85,6 +89,25 @@ def signup(request):
   form = UserCreationForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
+
+def update_profile(request):
+    if request.method == 'POST':
+        user_form = UserForm(request.POST, instance=request.user)
+        developer_form = DeveloperForm(request.POST, instance=request.user.developer)
+        if user_form.is_valid() and developer_form.is_valid():
+            user_form.save()
+            developer_form.save()
+            return redirect('/profile')
+        else:
+            error_message = 'invalid'
+    else:
+        user_form = UserForm(instance=request.user)
+        developer_form = DeveloperForm(instance=request.user.developer)
+    return render(request, 'main_app/profile_form.html', {
+        'user_form': user_form,
+        'developer_form': developer_form
+    })
+    
 
 def assoc_project(request, developer_id, project_id):
   Developer.objects.get(id=developer_id).projects.add(project_id)

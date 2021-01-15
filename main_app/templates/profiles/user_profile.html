@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">{{ user.username }}, you're logged in as:</span>
+    <br>
+    <h5>{{ user.developer.name }}</h5>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">Your Projects</span>
+    <br>
+
+    <div>
+     {% if developer.projects.count %}
+      {% for project in developer.projects.all %}
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">
+               {{ project.project_name }}
+            </span>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <h5>Not apart of any projects yet :\</h5>
+    {% endif %}
+    </div>
+  </div>
+</div>
+
+<a href="{% url 'update_profile' %}" class="waves-effect waves-light btn">Edit Profile</a>
+
+{% endblock %}
