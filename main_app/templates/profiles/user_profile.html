@@ -7,10 +7,6 @@
     <br>
     <h5>{{ user.developer.name }}</h5>
   </div>
-  {% comment %} <div class="card-action">
-    <a href="{% url 'developers_update' developer.id %}">Edit</a>
-    <a href="{% url 'developers_delete' developer.id %}">Delete</a>
-  </div> {% endcomment %}
 </div>
 
 <div class="card">
@@ -34,10 +30,19 @@
     {% endif %}
     </div>
   </div>
-  {% comment %} <div class="card-action">
-    <a href="{% url 'developers_update' developer.id %}">Edit</a>
-    <a href="{% url 'developers_delete' developer.id %}">Delete</a>
-  </div> {% endcomment %}
+  <div class="card-action">
+    {% comment %} <a href="{% url 'profile_update' developer.id %}">Edit</a> {% endcomment %}
+
+    <form method="post">
+  {% csrf_token %}
+  {{ user_form.as_p }}
+  {{ developer_form.as_p }}
+  <button type="submit">Save changes</button>
+</form>
+
+  </div>
 </div>
+
+<a href="{% url 'update_profile' %}">test</a>
 
 {% endblock %}
