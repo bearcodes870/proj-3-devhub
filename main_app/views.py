@@ -111,5 +111,8 @@ def update_profile(request):
 
 def assoc_project(request, developer_id, project_id):
   Developer.objects.get(id=developer_id).projects.add(project_id)
-  return redirect('detail', developer_id=developer_id)
+  return redirect('profiles/user_profile.html', developer_id=developer_id)
 
+def dev_projects(request):
+    projects = Project.objects.all()
+    return render(request, 'developers/project_add.html', {'projects': projects})
