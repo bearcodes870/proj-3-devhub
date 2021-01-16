@@ -6,12 +6,12 @@ class ProjectForm(ModelForm):
         model = Project
         fields = ['project_name', 'project_overview', 'languages']
 
-class UserForm(ModelForm):
-    class Meta:
-        model = User
-        fields = ('username', 'password')
-
 class DeveloperForm(ModelForm):
     class Meta:
         model = Developer
         fields = ('name', 'description')
+
+class UserForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ('username',)
