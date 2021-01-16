@@ -64,7 +64,7 @@ class ProjectDetail(LoginRequiredMixin, DetailView):
 
 class ProjectUpdate(LoginRequiredMixin, UpdateView):
   model = Project
-  fields = ['name', 'overview']
+  fields = ['project_name', 'project_overview']
 
 class ProjectDelete(LoginRequiredMixin, DeleteView):
   model = Project
