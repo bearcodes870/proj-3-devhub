@@ -1,1 +1,1 @@
-web: gunicorn devhubmattbear.wsgi
+web: gunicorn devhub.wsgi
