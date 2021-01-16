@@ -16,6 +16,10 @@ urlpatterns = [
     path('projects/create/', views.ProjectCreate.as_view(), name='projects_create'),
     path('projects/<int:pk>/update/', views.ProjectUpdate.as_view(), name='projects_update'),
     path('projects/<int:pk>/delete/', views.ProjectDelete.as_view(), name='projects_delete'),
+    path('profile/', views.user_profile, name='user_profile'),
+    path('profile/projects', views.dev_projects, name='dev_projects'),
+    path('profile/', views.assoc_project, name='assoc_project'),
+    path('profile/update', views.update_profile, name='update_profile'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup/', views.signup, name='signup'),
 ]
