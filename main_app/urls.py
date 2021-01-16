@@ -20,6 +20,7 @@ urlpatterns = [
     path('profile/projects', views.dev_projects, name='dev_projects'),
     path('profile/', views.assoc_project, name='assoc_project'),
     path('profile/update', views.update_profile, name='update_profile'),
+    path('profile/delete', views.delete_user, name='delete_user'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup/', views.signup, name='signup'),
 ]

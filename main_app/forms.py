@@ -15,3 +15,8 @@ class UserForm(ModelForm):
     class Meta:
         model = User
         fields = ('username',)
+
+class UserDeleteForm(ModelForm):
+    class Meta:
+        model = User
+        fields = []
