@@ -111,8 +111,15 @@ def update_profile(request):
 
 def assoc_project(request, developer_id, project_id):
   Developer.objects.get(id=developer_id).projects.add(project_id)
-  return redirect('profiles/user_profile.html', developer_id=developer_id)
+  return redirect('detail', developer_id=developer_id)
 
-def dev_projects(request):
+
+def unassoc_project(request, developer_id, project_id):
+    Developer.objects.get(id=developer_id).projects.remove(project_id)
+    return redirect('detail', developer_id=developer_id)
+
+def dev_projects(request, developer_id):
     projects = Project.objects.all()
-    return render(request, 'developers/project_add.html', {'projects': projects})
+    developer = Developer.objects.get(id=developer_id)
+    projects_developer_doesnt_have = Project.objects.exclude(id__in = developer.projects.all().values_list('id'))
+    return render(request, 'developers/project_add.html', {'projects': projects, 'developer': developer, 'not_assigned': projects_developer_doesnt_have})
