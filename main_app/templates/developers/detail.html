@@ -4,7 +4,7 @@
 <h1>{{ developer.name }}'s Profile</h1>
 
 <div class="card">
-  <div class="card-content">
+  <div class="card-content deep-purple lighten-4">
     <span class="card-title">A blurb about {{ developer.name }} </span>
     <br>
     <p>{{ developer.description }}</p>
@@ -14,14 +14,14 @@
     <div>
      {% if developer.projects.count %}
       {% for project in developer.projects.all %}
-        <div class="card">
+        <div class="card deep-purple lighten-3">
           <div class="card-content">
             <span class="card-title">
                {{ project.project_name }}
                 <div class="card-action">
                 <form action="{% url 'unassoc_project' developer.id project.id %}" method="post">
                 {% csrf_token %}
-                  <button type="submit" class="btn">Remove</button>
+                  <button type="submit" class="btn red lighten-1">Remove</button>
             </form>
           </div>
             </span>
@@ -33,9 +33,7 @@
     {% endif %}
     </div>
   </div>
-  <div class="card-action">
-    <a href="{% url 'developers_update' developer.id %}">Edit</a>
-    <a href="{% url 'developers_delete' developer.id %}">Delete</a>
+  <div class="card-action deep-purple lighten-4">
      <a href="{% url 'dev_projects' developer.id %}" class="waves-effect waves-light btn">Add Project</a>
   </div>
 </div>

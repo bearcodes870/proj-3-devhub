@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&family=Yusei+Magic&display=swap');
+
 body {
     display: flex;
     min-height: 100vh;
@@ -11,4 +14,30 @@ main {
 footer.page-footer {
     padding-top: 0;
     text-align: right;
+}
+
+h1 {
+    color: #4527a0;
+    font-family: 'Yusei Magic', sans-serif;
+}
+
+h2 {
+    color: #4527a0;
+    font-family: 'Yusei Magic', sans-serif;
+}
+
+p {
+    font-family: 'Ubuntu', sans-serif;
+    color: #4527a0;;
+}
+
+span {
+    font-family: 'Ubuntu', sans-serif;
+    color: #4527a0;
+}
+
+a {
+    color: #4527a0;
+    font-family: 'Yusei Magic', sans-serif;
+    font-weight: bolder;
 }
