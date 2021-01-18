@@ -22,7 +22,7 @@ urlpatterns = [
     path('developers/<int:developer_id>/assoc_project/<int:project_id>/', views.assoc_project, name='assoc_project'),
     #remove a project from developer
     path('developers/<int:developer_id>/unassoc_project/<int:project_id>/', views.unassoc_project, name='unassoc_project'),
-    path('profile/update', views.update_profile, name='update_profile'),
+    path('profile/update/', views.update_profile, name='update_profile'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup/', views.signup, name='signup'),
 ]

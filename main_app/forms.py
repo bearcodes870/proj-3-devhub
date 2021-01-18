@@ -9,7 +9,7 @@ class ProjectForm(ModelForm):
 class UserForm(ModelForm):
     class Meta:
         model = User
-        fields = ('username', 'password')
+        fields = ('username',)
 
 class DeveloperForm(ModelForm):
     class Meta:

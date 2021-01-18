@@ -68,8 +68,6 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'devhub.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -123,3 +121,9 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/'
 
 LOGOUT_REDIRECT_URL = '/'
+
+# HEROKU CONFIG
+import django_heroku
+django_heroku.settings(locals())
+
+WSGI_APPLICATION = 'devhub.wsgi.application'
