@@ -115,11 +115,11 @@ def update_profile(request):
 
 
 @login_required
-def delete_user(request, user_id):
+def delete_user(request):
     if request.method == 'POST':
         delete_form = UserDeleteForm(request.POST, instance=request.user)
-        user = User.objects.get(id=user_id)
-        user.delete()
+        # user = User.objects.get(id=user_id)
+        request.user.delete()
         return render('home.html')
         messages.success(request, 'User Successfully Deleted')
     else:
@@ -130,7 +130,7 @@ def delete_user(request, user_id):
     }
 
     logout(request)
-    return render(request, 'about.html')
+    return redirect(request, 'home.html')
     
 
 def assoc_project(request, developer_id, project_id):
