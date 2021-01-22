@@ -132,16 +132,17 @@ def delete_user(request):
     logout(request)
     return redirect(request, 'home.html')
     
-
+@login_required
 def assoc_project(request, developer_id, project_id):
   Developer.objects.get(id=developer_id).projects.add(project_id)
   return redirect('detail', developer_id=developer_id)
 
-
+@login_required
 def unassoc_project(request, developer_id, project_id):
     Developer.objects.get(id=developer_id).projects.remove(project_id)
     return redirect('detail', developer_id=developer_id)
 
+@login_required
 def dev_projects(request, developer_id):
     projects = Project.objects.all()
     developer = Developer.objects.get(id=developer_id)
