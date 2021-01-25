@@ -23,6 +23,7 @@ urlpatterns = [
     #remove a project from developer
     path('developers/<int:developer_id>/unassoc_project/<int:project_id>/', views.unassoc_project, name='unassoc_project'),
     path('profile/update/', views.update_profile, name='update_profile'),
+    path('profile/delete/', views.delete_user, name='delete_user'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup/', views.signup, name='signup'),
 ]

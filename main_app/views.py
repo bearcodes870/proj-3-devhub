@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-from django.contrib.auth import login
+from django.contrib import messages
+from django.contrib.auth import login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Developer, Project
-from .forms import ProjectForm, UserForm, DeveloperForm
+from .models import Developer, Project, User
+from .forms import ProjectForm, UserForm, UserDeleteForm, DeveloperForm
 
 class DeveloperCreate(LoginRequiredMixin, CreateView):
     model = Developer
@@ -40,9 +41,11 @@ def about(request):
     return render(request, 'about.html')
 
 @login_required
-def developers_index(request):
+def developers_index(request, user_id):
     developers = Developer.objects.all()
-    return render(request, 'developers/index.html', { 'developers': developers })
+    return render(request, 'developers/index.html', { 
+        'developers': developers
+    })
 
 @login_required
 def developers_detail(request, developer_id):
@@ -108,6 +111,26 @@ def update_profile(request):
         'user_form': user_form,
         'developer_form': developer_form
     })
+
+
+
+@login_required
+def delete_user(request):
+    if request.method == 'POST':
+        delete_form = UserDeleteForm(request.POST, instance=request.user)
+        # user = User.objects.get(id=user_id)
+        request.user.delete()
+        return render('home.html')
+        messages.success(request, 'User Successfully Deleted')
+    else:
+        delete_form = UserDeleteForm(instance=request.user)
+
+    context = {
+        'delete_form': delete_form
+    }
+
+    logout(request)
+    return redirect(request, 'home.html')
     
 @login_required
 def assoc_project(request, developer_id, project_id):
